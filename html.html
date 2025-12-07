@@ -1,0 +1,1493 @@
+<!DOCTYPE html>
+<html lang="uk" data-lang="uk">
+
+<head>
+   <meta charset="utf-8" />
+   <title>EcoMove Trans — Вивіз будівельного сміття та вантажні перевезення</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+   <!-- Google Font -->
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+   <style>
+      /* ====== Base styles / Reset ====== */
+      * {
+         margin: 0;
+         padding: 0;
+         box-sizing: border-box;
+      }
+
+      :root {
+         --bg-main: #050816;
+         --bg-secondary: #0f172a;
+         --accent: #16a34a;
+         --accent-soft: rgba(22, 163, 74, 0.15);
+         --text-main: #f9fafb;
+         --text-muted: #cbd5f5;
+         --border-subtle: rgba(148, 163, 184, 0.4);
+         --radius-xl: 24px;
+         --radius-lg: 18px;
+         --radius-pill: 999px;
+         --shadow-soft: 0 20px 45px rgba(15, 23, 42, 0.9);
+         --shadow-chip: 0 10px 25px rgba(15, 23, 42, 0.7);
+         --max-width: 1200px;
+         --transition-fast: 0.2s ease-out;
+         --transition-med: 0.4s ease-out;
+      }
+
+      body {
+         font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+         background: radial-gradient(circle at top left, #1e293b 0, #020617 46%, #000 100%);
+         color: var(--text-main);
+         line-height: 1.6;
+         -webkit-font-smoothing: antialiased;
+      }
+
+      a {
+         color: inherit;
+         text-decoration: none;
+      }
+
+      img {
+         max-width: 100%;
+         display: block;
+      }
+
+      .page {
+         min-height: 100vh;
+         display: flex;
+         flex-direction: column;
+      }
+
+      .container {
+         width: 100%;
+         max-width: var(--max-width);
+         margin: 0 auto;
+         padding: 0 20px;
+      }
+
+      /* ====== Header ====== */
+      .header {
+         position: sticky;
+         top: 0;
+         z-index: 50;
+         backdrop-filter: blur(18px);
+         background: linear-gradient(to bottom, rgba(15, 23, 42, 0.96), rgba(15, 23, 42, 0.7), transparent);
+         border-bottom: 1px solid rgba(148, 163, 184, 0.25);
+      }
+
+      .header__inner {
+         display: flex;
+         align-items: center;
+         justify-content: space-between;
+         padding: 14px 0;
+         gap: 16px;
+      }
+
+      .header__brand {
+         display: flex;
+         align-items: center;
+         gap: 12px;
+      }
+
+      .logo-badge {
+         width: 44px;
+         height: 44px;
+         border-radius: 18px;
+         background: radial-gradient(circle at 20% 0, #22c55e, #16a34a 35%, #0f172a 100%);
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         box-shadow: var(--shadow-chip);
+      }
+
+      .logo-badge span {
+         font-weight: 700;
+         font-size: 20px;
+         letter-spacing: 0.04em;
+      }
+
+      .brand-text {
+         display: flex;
+         flex-direction: column;
+         gap: 2px;
+      }
+
+      .brand-text__name {
+         font-weight: 600;
+         font-size: 18px;
+         letter-spacing: 0.02em;
+      }
+
+      .brand-text__tagline {
+         font-size: 12px;
+         color: var(--text-muted);
+      }
+
+      .header__right {
+         display: flex;
+         align-items: center;
+         gap: 12px;
+         flex-wrap: wrap;
+         justify-content: flex-end;
+      }
+
+      .header__contacts {
+         display: flex;
+         align-items: center;
+         gap: 12px;
+         flex-wrap: wrap;
+         justify-content: flex-end;
+      }
+
+      .contact-chip {
+         display: inline-flex;
+         align-items: center;
+         gap: 8px;
+         padding: 6px 12px;
+         border-radius: var(--radius-pill);
+         border: 1px solid rgba(148, 163, 184, 0.5);
+         background: rgba(15, 23, 42, 0.7);
+         font-size: 12px;
+         color: var(--text-muted);
+      }
+
+      .contact-chip__icon {
+         font-size: 16px;
+      }
+
+      .contact-chip__label {
+         font-weight: 500;
+         color: var(--text-main);
+      }
+
+      .btn-primary {
+         border-radius: var(--radius-pill);
+         border: none;
+         padding: 9px 18px;
+         font-size: 13px;
+         font-weight: 600;
+         text-transform: uppercase;
+         letter-spacing: 0.08em;
+         background: linear-gradient(135deg, #22c55e, #16a34a);
+         color: #022c22;
+         display: inline-flex;
+         align-items: center;
+         gap: 8px;
+         cursor: pointer;
+         box-shadow: 0 18px 38px rgba(34, 197, 94, 0.5);
+         transition: transform var(--transition-fast), box-shadow var(--transition-fast), filter var(--transition-fast);
+         white-space: nowrap;
+      }
+
+      .btn-primary:hover {
+         transform: translateY(-1px);
+         box-shadow: 0 22px 50px rgba(34, 197, 94, 0.6);
+         filter: brightness(1.04);
+      }
+
+      .btn-primary:active {
+         transform: translateY(1px) scale(0.98);
+         box-shadow: 0 10px 25px rgba(34, 197, 94, 0.4);
+      }
+
+      .btn-primary__dot {
+         width: 8px;
+         height: 8px;
+         border-radius: 50%;
+         background: #022c22;
+         position: relative;
+      }
+
+      .btn-primary__dot::after {
+         content: "";
+         position: absolute;
+         inset: -6px;
+         border-radius: inherit;
+         border: 1px solid rgba(15, 23, 42, 0.7);
+         opacity: 0.65;
+      }
+
+      /* ====== Language switcher ====== */
+      .lang-switcher {
+         display: inline-flex;
+         align-items: center;
+         gap: 4px;
+         padding: 3px;
+         border-radius: 999px;
+         background: rgba(15, 23, 42, 0.9);
+         border: 1px solid rgba(148, 163, 184, 0.55);
+         font-size: 11px;
+      }
+
+      .lang-switcher__btn {
+         border: none;
+         background: transparent;
+         color: var(--text-muted);
+         padding: 4px 8px;
+         border-radius: 999px;
+         cursor: pointer;
+         font-size: 11px;
+         font-weight: 500;
+      }
+
+      .lang-switcher__btn.is-active {
+         background: rgba(34, 197, 94, 0.18);
+         color: #bbf7d0;
+      }
+
+      /* ====== Hero ====== */
+      .hero {
+         padding: 40px 0 70px;
+      }
+
+      .hero__grid {
+         display: grid;
+         grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+         gap: 32px;
+         align-items: center;
+      }
+
+      .hero__eyebrow {
+         display: inline-flex;
+         align-items: center;
+         gap: 8px;
+         padding: 4px 10px 4px 4px;
+         border-radius: var(--radius-pill);
+         background: rgba(15, 23, 42, 0.8);
+         border: 1px solid rgba(148, 163, 184, 0.5);
+         margin-bottom: 14px;
+      }
+
+      .hero__eyebrow-dot {
+         width: 20px;
+         height: 20px;
+         border-radius: 999px;
+         background: radial-gradient(circle at 35% 0, #bbf7d0, #16a34a 40%, #052e16 100%);
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         font-size: 12px;
+      }
+
+      .hero__eyebrow-text {
+         font-size: 11px;
+         text-transform: uppercase;
+         letter-spacing: 0.18em;
+         color: var(--text-muted);
+      }
+
+      .hero__title {
+         font-size: clamp(32px, 4vw, 40px);
+         line-height: 1.1;
+         font-weight: 700;
+         margin-bottom: 14px;
+      }
+
+      .hero__title span {
+         background: linear-gradient(120deg, #bbf7d0, #22c55e, #4ade80);
+         -webkit-background-clip: text;
+         color: transparent;
+      }
+
+      .hero__subtitle {
+         font-size: 15px;
+         color: var(--text-muted);
+         margin-bottom: 18px;
+      }
+
+      .hero__pills {
+         display: flex;
+         flex-wrap: wrap;
+         gap: 8px;
+         margin-bottom: 18px;
+      }
+
+      .pill {
+         padding: 6px 12px;
+         border-radius: var(--radius-pill);
+         font-size: 11px;
+         text-transform: uppercase;
+         letter-spacing: 0.16em;
+         border: 1px solid rgba(148, 163, 184, 0.45);
+         color: var(--text-muted);
+      }
+
+      .hero__meta {
+         display: flex;
+         flex-wrap: wrap;
+         gap: 12px;
+         font-size: 12px;
+         color: var(--text-muted);
+         margin-bottom: 22px;
+      }
+
+      .hero__meta-item {
+         display: inline-flex;
+         align-items: center;
+         gap: 6px;
+      }
+
+      .hero__meta-badge {
+         width: 9px;
+         height: 9px;
+         border-radius: 999px;
+         background: #22c55e;
+         box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.35);
+      }
+
+      .hero__cta-row {
+         display: flex;
+         align-items: center;
+         gap: 14px;
+         flex-wrap: wrap;
+         margin-bottom: 18px;
+      }
+
+      .hero__note {
+         font-size: 12px;
+         color: var(--text-muted);
+         max-width: 280px;
+      }
+
+      .hero__note strong {
+         color: #e5e7eb;
+         font-weight: 500;
+      }
+
+      .hero__trust {
+         display: flex;
+         align-items: center;
+         gap: 8px;
+         font-size: 11px;
+         color: var(--text-muted);
+      }
+
+      .hero__trust-avatars {
+         display: flex;
+      }
+
+      .hero__trust-avatar {
+         width: 22px;
+         height: 22px;
+         border-radius: 999px;
+         border: 2px solid #020617;
+         background: radial-gradient(circle at 30% 0, #22c55e, #0ea5e9, #1d4ed8);
+         margin-left: -6px;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         font-size: 11px;
+      }
+
+      .hero__trust-avatar:first-child {
+         margin-left: 0;
+      }
+
+      /* Right side visual */
+      .hero__visual {
+         position: relative;
+         border-radius: var(--radius-xl);
+         overflow: hidden;
+         background: radial-gradient(circle at top, #22c55e 0, #0f172a 42%, #020617 100%);
+         padding: 18px;
+         box-shadow: var(--shadow-soft);
+         min-height: 260px;
+         isolation: isolate;
+      }
+
+      .hero__visual-inner {
+         position: relative;
+         height: 100%;
+         border-radius: calc(var(--radius-xl) - 10px);
+         overflow: hidden;
+         border: 1px solid rgba(15, 23, 42, 0.7);
+         background: radial-gradient(circle at top left, rgba(34, 197, 94, 0.35), transparent 55%), linear-gradient(to bottom right, #020617, #020617, #111827);
+      }
+
+      .hero__photo-overlay {
+         position: absolute;
+         inset: 0;
+         background-image: url("https://images.pexels.com/photos/2519811/pexels-photo-2519811.jpeg?auto=compress&cs=tinysrgb&w=1600");
+         background-size: cover;
+         background-position: center;
+         opacity: 0.75;
+         mix-blend-mode: screen;
+      }
+
+      .hero__gradient-mask {
+         position: absolute;
+         inset: 0;
+         background: radial-gradient(circle at 20% 0, transparent 0, rgba(15, 23, 42, 0.4) 45%), linear-gradient(to bottom, transparent 0, #020617 100%);
+      }
+
+      .hero__glass {
+         position: absolute;
+         right: 16px;
+         bottom: 16px;
+         padding: 10px 14px;
+         border-radius: 18px;
+         background: rgba(15, 23, 42, 0.9);
+         border: 1px solid rgba(148, 163, 184, 0.5);
+         backdrop-filter: blur(14px);
+         display: flex;
+         flex-direction: column;
+         gap: 2px;
+         font-size: 11px;
+         max-width: 200px;
+      }
+
+      .hero__badge-floating {
+         position: absolute;
+         left: 18px;
+         top: 18px;
+         padding: 7px 12px;
+         border-radius: var(--radius-pill);
+         background: rgba(15, 23, 42, 0.9);
+         border: 1px solid rgba(148, 163, 184, 0.55);
+         font-size: 11px;
+         display: inline-flex;
+         align-items: center;
+         gap: 8px;
+         backdrop-filter: blur(14px);
+      }
+
+      .hero__badge-dot {
+         width: 10px;
+         height: 10px;
+         border-radius: 999px;
+         background: radial-gradient(circle at 30% 0, #bbf7d0, #22c55e, #15803d);
+         box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.4);
+      }
+
+      .hero__pulse {
+         position: absolute;
+         inset: 18%;
+         border-radius: calc(var(--radius-xl) - 10px);
+         border: 1px solid rgba(34, 197, 94, 0.35);
+         pointer-events: none;
+         animation: heroPulse 3.8s ease-out infinite;
+      }
+
+      @keyframes heroPulse {
+         0% {
+            opacity: 0.2;
+            transform: scale(0.98);
+         }
+
+         30% {
+            opacity: 0.6;
+            transform: scale(1);
+         }
+
+         100% {
+            opacity: 0;
+            transform: scale(1.04);
+         }
+      }
+
+      /* ====== Section base ====== */
+      .section {
+         padding: 10px 0 60px;
+      }
+
+      .section__header {
+         margin-bottom: 26px;
+         display: flex;
+         flex-direction: column;
+         gap: 6px;
+      }
+
+      .section__eyebrow {
+         font-size: 11px;
+         text-transform: uppercase;
+         letter-spacing: 0.18em;
+         color: var(--text-muted);
+      }
+
+      .section__title {
+         font-size: 22px;
+         font-weight: 600;
+      }
+
+      .section__subtitle {
+         font-size: 14px;
+         color: var(--text-muted);
+         max-width: 520px;
+      }
+
+      /* ====== 50/50 content ====== */
+      .split {
+         display: grid;
+         grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+         gap: 28px;
+         align-items: center;
+         margin-bottom: 32px;
+      }
+
+      .split--reverse {
+         grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+      }
+
+      .split__text-card {
+         border-radius: var(--radius-xl);
+         background: radial-gradient(circle at top left, rgba(34, 197, 94, 0.08), rgba(15, 23, 42, 0.96));
+         border: 1px solid var(--border-subtle);
+         padding: 20px 22px;
+         box-shadow: var(--shadow-soft);
+      }
+
+      .split__label {
+         font-size: 11px;
+         text-transform: uppercase;
+         letter-spacing: 0.16em;
+         color: var(--text-muted);
+         margin-bottom: 6px;
+      }
+
+      .split__title {
+         font-size: 18px;
+         font-weight: 600;
+         margin-bottom: 8px;
+      }
+
+      .split__body {
+         font-size: 14px;
+         color: var(--text-muted);
+         margin-bottom: 14px;
+      }
+
+      .split__tags {
+         display: flex;
+         flex-wrap: wrap;
+         gap: 8px;
+         margin-bottom: 10px;
+      }
+
+      .tag {
+         font-size: 11px;
+         padding: 6px 10px;
+         border-radius: var(--radius-pill);
+         background: rgba(15, 23, 42, 0.8);
+         border: 1px solid rgba(148, 163, 184, 0.5);
+         color: var(--text-muted);
+      }
+
+      .split__meta {
+         font-size: 12px;
+         color: var(--text-muted);
+      }
+
+      .split__visual {
+         border-radius: var(--radius-xl);
+         overflow: hidden;
+         position: relative;
+         min-height: 210px;
+         background: radial-gradient(circle at top left, #22c55e 0, #0f172a 30%, #020617 100%);
+         box-shadow: var(--shadow-soft);
+      }
+
+      .split__visual-photo {
+         position: absolute;
+         inset: 0;
+         background-size: cover;
+         background-position: center;
+         opacity: 0.8;
+         mix-blend-mode: lighten;
+      }
+
+      .split__visual-overlay {
+         position: absolute;
+         inset: 0;
+         background: linear-gradient(to top right, rgba(15, 23, 42, 0.9), transparent 45%);
+      }
+
+      .split__visual-chip {
+         position: absolute;
+         left: 14px;
+         bottom: 14px;
+         padding: 8px 12px;
+         border-radius: var(--radius-pill);
+         background: rgba(15, 23, 42, 0.9);
+         border: 1px solid rgba(148, 163, 184, 0.6);
+         font-size: 11px;
+      }
+
+      /* ====== Services grid ====== */
+      .services-grid {
+         display: grid;
+         grid-template-columns: repeat(3, minmax(0, 1fr));
+         gap: 18px;
+         margin-bottom: 18px;
+      }
+
+      .service-card {
+         border-radius: var(--radius-lg);
+         padding: 14px 14px 16px;
+         background: radial-gradient(circle at top, rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.98));
+         border: 1px solid rgba(148, 163, 184, 0.5);
+         box-shadow: var(--shadow-soft);
+         display: flex;
+         flex-direction: column;
+         gap: 6px;
+         position: relative;
+         overflow: hidden;
+         cursor: default;
+         transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
+      }
+
+      .service-card::after {
+         content: "";
+         position: absolute;
+         inset: -40%;
+         background: radial-gradient(circle at 10% 0, rgba(34, 197, 94, 0.24), transparent 60%);
+         opacity: 0;
+         transition: opacity var(--transition-med);
+         pointer-events: none;
+      }
+
+      .service-card:hover {
+         transform: translateY(-3px) translateZ(0);
+         box-shadow: 0 22px 50px rgba(15, 23, 42, 0.9);
+         border-color: rgba(34, 197, 94, 0.7);
+      }
+
+      .service-card:hover::after {
+         opacity: 1;
+      }
+
+      .service-card__icon {
+         font-size: 20px;
+      }
+
+      .service-card__title {
+         font-weight: 600;
+         font-size: 14px;
+      }
+
+      .service-card__text {
+         font-size: 13px;
+         color: var(--text-muted);
+         flex-grow: 1;
+      }
+
+      .service-card__meta {
+         margin-top: 6px;
+         font-size: 11px;
+         color: var(--text-muted);
+      }
+
+      /* ====== Contact / CTA section ====== */
+      .contact-card {
+         border-radius: var(--radius-xl);
+         padding: 20px 20px 22px;
+         background: linear-gradient(135deg, rgba(34, 197, 94, 0.12), rgba(15, 23, 42, 0.98));
+         border: 1px solid rgba(34, 197, 94, 0.45);
+         display: grid;
+         grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+         gap: 24px;
+         box-shadow: var(--shadow-soft);
+      }
+
+      .contact-card__title {
+         font-size: 18px;
+         font-weight: 600;
+         margin-bottom: 6px;
+      }
+
+      .contact-card__text {
+         font-size: 14px;
+         color: var(--text-muted);
+         margin-bottom: 10px;
+      }
+
+      .contact-card__inline {
+         display: flex;
+         flex-wrap: wrap;
+         gap: 10px;
+         font-size: 13px;
+         color: var(--text-muted);
+      }
+
+      .contact-card__inline a {
+         font-weight: 500;
+      }
+
+      .contact-form {
+         display: flex;
+         flex-direction: column;
+         gap: 10px;
+      }
+
+      .field {
+         display: flex;
+         flex-direction: column;
+         gap: 4px;
+         font-size: 12px;
+      }
+
+      .field label {
+         color: var(--text-muted);
+      }
+
+      .field input,
+      .field textarea,
+      .field select {
+         border-radius: 12px;
+         border: 1px solid rgba(148, 163, 184, 0.6);
+         background: rgba(15, 23, 42, 0.95);
+         padding: 9px 11px;
+         font-size: 13px;
+         color: var(--text-main);
+         outline: none;
+         transition: border-color var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
+         resize: vertical;
+         min-height: 40px;
+      }
+
+      .field input::placeholder,
+      .field textarea::placeholder {
+         color: rgba(148, 163, 184, 0.8);
+      }
+
+      .field input:focus,
+      .field textarea:focus,
+      .field select:focus {
+         border-color: #22c55e;
+         box-shadow: 0 0 0 1px rgba(34, 197, 94, 0.8);
+         background: rgba(15, 23, 42, 0.98);
+      }
+
+      .contact-form__hint {
+         font-size: 11px;
+         color: var(--text-muted);
+      }
+
+      /* ====== Footer ====== */
+      .footer {
+         padding: 18px 0 22px;
+         border-top: 1px solid rgba(30, 64, 175, 0.6);
+         margin-top: auto;
+         background: radial-gradient(circle at top, rgba(15, 23, 42, 0.9), #020617);
+      }
+
+      .footer__inner {
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
+         gap: 14px;
+         font-size: 12px;
+         color: var(--text-muted);
+         flex-wrap: wrap;
+      }
+
+      .footer__links {
+         display: flex;
+         gap: 14px;
+         flex-wrap: wrap;
+      }
+
+      .footer__links a {
+         text-decoration: underline;
+         text-decoration-style: dotted;
+         text-decoration-thickness: 1px;
+         text-underline-offset: 3px;
+      }
+
+      /* ====== Reveal on scroll ====== */
+      .reveal {
+         opacity: 0;
+         transform: translateY(20px);
+         transition: opacity var(--transition-med), transform var(--transition-med);
+      }
+
+      .reveal--left {
+         transform: translateX(-26px);
+      }
+
+      .reveal--right {
+         transform: translateX(26px);
+      }
+
+      .reveal.is-visible {
+         opacity: 1;
+         transform: translate(0, 0);
+      }
+
+      /* ====== Responsive ====== */
+      @media (max-width: 960px) {
+
+         .hero__grid,
+         .split,
+         .split--reverse,
+         .contact-card {
+            grid-template-columns: minmax(0, 1fr);
+         }
+
+         .hero {
+            padding-top: 24px;
+         }
+
+         .hero__visual {
+            order: -1;
+         }
+
+         .header__inner {
+            align-items: flex-start;
+         }
+
+         .header__right {
+            justify-content: flex-start;
+         }
+      }
+
+      @media (max-width: 768px) {
+         .services-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+         }
+
+         .header__inner {
+            flex-direction: column;
+            align-items: flex-start;
+         }
+
+         .hero__title {
+            font-size: 28px;
+         }
+
+         .section {
+            padding-bottom: 46px;
+         }
+      }
+
+      @media (max-width: 560px) {
+         .services-grid {
+            grid-template-columns: minmax(0, 1fr);
+         }
+
+         .contact-card {
+            padding: 16px 14px 18px;
+         }
+
+         .split__text-card,
+         .hero__visual {
+            border-radius: 18px;
+         }
+
+         .footer__inner {
+            flex-direction: column-reverse;
+            align-items: flex-start;
+         }
+      }
+   </style>
+</head>
+
+<body>
+   <div class="page">
+      <!-- ================= HEADER ================= -->
+      <header class="header">
+         <div class="container header__inner">
+            <div class="header__brand">
+               <div class="logo-badge">
+                  <span>ET</span>
+               </div>
+               <div class="brand-text">
+                  <div class="brand-text__name">EcoMove Trans</div>
+                  <div class="brand-text__tagline" data-i18n="header.tagline">
+                     Будівельне сміття · Переїзди · Франція
+                  </div>
+               </div>
+            </div>
+
+            <div class="header__right">
+               <div class="header__contacts">
+                  <a class="contact-chip" href="tel:+33700000000">
+                     <span class="contact-chip__icon">📞</span>
+                     <span>
+                        <span class="contact-chip__label" data-i18n="header.phoneLabel">+33 7 00 00 00 00</span><br>
+                        <span data-i18n="header.hours">Щоденно 08:00–20:00</span>
+                     </span>
+                  </a>
+                  <a class="contact-chip" href="https://wa.me/33700000000" target="_blank" rel="noopener">
+                     <span class="contact-chip__icon">🟢</span>
+                     <span>
+                        <span class="contact-chip__label" data-i18n="header.whatsapp">WhatsApp</span><br>
+                        <span data-i18n="header.whatsappNote">Швидка відповідь</span>
+                     </span>
+                  </a>
+               </div>
+
+               <button class="btn-primary" data-scroll-to="#contact">
+                  <span class="btn-primary__dot"></span>
+                  <span data-i18n="header.cta">Замовити вивіз</span>
+               </button>
+
+               <div class="lang-switcher">
+                  <button class="lang-switcher__btn is-active" data-lang-switch="uk">UA</button>
+                  <button class="lang-switcher__btn" data-lang-switch="fr">FR</button>
+               </div>
+            </div>
+         </div>
+      </header>
+
+      <!-- ================= HERO ================= -->
+      <main>
+         <section class="hero">
+            <div class="container hero__grid">
+               <!-- Left column: text -->
+               <div class="hero__content reveal">
+                  <div class="hero__eyebrow">
+                     <div class="hero__eyebrow-dot">🚚</div>
+                     <div class="hero__eyebrow-text" data-i18n="hero.badge">
+                        Вивіз будівельного сміття · Île-de-France
+                     </div>
+                  </div>
+                  <h1 class="hero__title" data-i18n="hero.title">
+                     Чистий обʼєкт <span>без головного болю</span> — заберемо сміття та речі в зручний час.
+                  </h1>
+                  <p class="hero__subtitle" data-i18n="hero.subtitle">
+                     Ми вивозимо будівельне сміття, старі меблі, техніку та особисті речі після ремонту, переїзду або
+                     розчищення.
+                     Працюємо акуратно, швидко та легально на території Франції.
+                  </p>
+
+                  <div class="hero__pills">
+                     <div class="pill" data-i18n="hero.pill1">Будівельне сміття</div>
+                     <div class="pill" data-i18n="hero.pill2">Переїзди квартир і будинків</div>
+                     <div class="pill" data-i18n="hero.pill3">Вантажні перевезення до 3.5 т</div>
+                  </div>
+
+                  <div class="hero__meta">
+                     <div class="hero__meta-item">
+                        <span class="hero__meta-badge"></span>
+                        <span data-i18n="hero.meta1">Виїзд від 2 годин після дзвінка</span>
+                     </div>
+                     <div class="hero__meta-item">
+                        <span class="hero__meta-badge"></span>
+                        <span data-i18n="hero.meta2">Фіксована ціна до початку робіт</span>
+                     </div>
+                  </div>
+
+                  <div class="hero__cta-row">
+                     <button class="btn-primary" data-scroll-to="#contact">
+                        <span class="btn-primary__dot"></span>
+                        <span data-i18n="hero.cta">Отримати прорахунок</span>
+                     </button>
+                     <div class="hero__note" data-i18n="hero.note">
+                        <strong>Фото в WhatsApp</strong> — надішліть 2–3 фото сміття або речей, і ми прорахуємо вартість
+                        за 5–10 хв.
+                     </div>
+                  </div>
+
+                  <div class="hero__trust">
+                     <div class="hero__trust-avatars">
+                        <div class="hero__trust-avatar">FR</div>
+                        <div class="hero__trust-avatar">EU</div>
+                        <div class="hero__trust-avatar">UA</div>
+                     </div>
+                     <span data-i18n="hero.trust">
+                        Працюємо з приватними клієнтами, будівельними бригадами та агенціями нерухомості.
+                     </span>
+                  </div>
+               </div>
+
+               <!-- Right column: visual -->
+               <div class="hero__visual reveal reveal--right">
+                  <div class="hero__visual-inner">
+                     <div class="hero__photo-overlay"></div>
+                     <div class="hero__gradient-mask"></div>
+
+                     <div class="hero__badge-floating">
+                        <span class="hero__badge-dot"></span>
+                        <span data-i18n="hero.badgeFloating">Повний цикл: завантаження, вивіз, утилізація</span>
+                     </div>
+
+                     <div class="hero__glass">
+                        <strong data-i18n="hero.glassTitle">Сьогодні: 5 доступних слотів</strong>
+                        <span data-i18n="hero.glassText">
+                           Можливий терміновий виїзд у той самий день в межах Парижу та передмість.
+                        </span>
+                     </div>
+
+                     <div class="hero__pulse"></div>
+                  </div>
+               </div>
+            </div>
+         </section>
+
+         <!-- ================= SERVICES ================= -->
+         <section class="section" id="services">
+            <div class="container">
+               <div class="section__header reveal">
+                  <div class="section__eyebrow" data-i18n="services.eyebrow">Послуги</div>
+                  <h2 class="section__title" data-i18n="services.title">Що саме ми перевозимо</h2>
+                  <p class="section__subtitle" data-i18n="services.subtitle">
+                     Гнучко підлаштовуємось під ваш запит — від невеликого ремонту до повного очищення обʼєкта
+                     або переїзду в інше місто.
+                  </p>
+               </div>
+
+               <div class="services-grid">
+                  <article class="service-card reveal">
+                     <div class="service-card__icon">🧱</div>
+                     <h3 class="service-card__title" data-i18n="services.card1.title">Будівельне сміття</h3>
+                     <p class="service-card__text" data-i18n="services.card1.text">
+                        Мішки з будматеріалами, плитка, гіпсокартон, двері, рами, сантехніка, залишки демонтажу.
+                        Акуратне виносення з поверху та завантаження в авто.
+                     </p>
+                     <div class="service-card__meta" data-i18n="services.card1.meta">
+                        Підʼїзд, приватний будинок, склад, обʼєкт після ремонту.
+                     </div>
+                  </article>
+
+                  <article class="service-card reveal">
+                     <div class="service-card__icon">📦</div>
+                     <h3 class="service-card__title" data-i18n="services.card2.title">Переїзд речей</h3>
+                     <p class="service-card__text" data-i18n="services.card2.text">
+                        Квартири, будинки, кімнати, комори та гаражі. Допомагаємо упакувати, спускаємо по сходах,
+                        надійно фіксуємо в кузові.
+                     </p>
+                     <div class="service-card__meta" data-i18n="services.card2.meta">
+                        Можливі нічні переїзди за попередньою домовленістю.
+                     </div>
+                  </article>
+
+                  <article class="service-card reveal">
+                     <div class="service-card__icon">🚛</div>
+                     <h3 class="service-card__title" data-i18n="services.card3.title">Вантажні перевезення</h3>
+                     <p class="service-card__text" data-i18n="services.card3.text">
+                        Доставка матеріалів, меблів, техніки та палет. До 3.5 тонни. Міські та міжміські рейси по
+                        Франції.
+                     </p>
+                     <div class="service-card__meta" data-i18n="services.card3.meta">
+                        Працюємо з приватними клієнтами та компаніями.
+                     </div>
+                  </article>
+               </div>
+
+               <p class="contact-form__hint reveal" data-i18n="services.hint">
+                  Не знайшли свій випадок? Напишіть нам у WhatsApp — підкажемо, як краще організувати перевезення.
+               </p>
+            </div>
+         </section>
+
+         <!-- ================= 50/50: Construction waste ================= -->
+         <section class="section">
+            <div class="container">
+               <div class="split">
+                  <div class="split__text-card reveal reveal--left">
+                     <div class="split__label" data-i18n="split1.label">Будівельне сміття</div>
+                     <h3 class="split__title" data-i18n="split1.title">
+                        Після ремонту залишився хаос? Ми приберемо за будівельниками.
+                     </h3>
+                     <p class="split__body" data-i18n="split1.body">
+                        Більше не потрібно думати, куди подіти мішки з будматеріалами, стару плитку чи сантехніку.
+                        Ми приїдемо з командою, винесемо все зі сходів або ліфта, акуратно завантажимо
+                        та вивеземо на легальні пункти утилізації.
+                     </p>
+                     <div class="split__tags">
+                        <span class="tag" data-i18n="split1.tag1">Париж та передмістя</span>
+                        <span class="tag" data-i18n="split1.tag2">Обʼєкти після ремонту</span>
+                        <span class="tag" data-i18n="split1.tag3">Фото-прорахунок у месенджері</span>
+                     </div>
+                     <div class="split__meta" data-i18n="split1.meta">
+                        Орієнтовна ціна розраховується по фото та приблизному обʼєму в м³ ще до виїзду на обʼєкт.
+                     </div>
+                  </div>
+
+                  <div class="split__visual reveal reveal--right">
+                     <div class="split__visual-photo"
+                        style="background-image:url('https://images.pexels.com/photos/5854208/pexels-photo-5854208.jpeg?auto=compress&cs=tinysrgb&w=1600');">
+                     </div>
+                     <div class="split__visual-overlay"></div>
+                     <div class="split__visual-chip" data-i18n="split1.chip">
+                        🧱 3–4 години — і обʼєкт готовий до прибирання та фінальної здачі.
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </section>
+
+         <!-- ================= 50/50: Moves & things (reversed) ================= -->
+         <section class="section">
+            <div class="container">
+               <div class="split split--reverse">
+                  <div class="split__visual reveal reveal--left">
+                     <div class="split__visual-photo"
+                        style="background-image:url('https://images.pexels.com/photos/7464707/pexels-photo-7464707.jpeg?auto=compress&cs=tinysrgb&w=1600');">
+                     </div>
+                     <div class="split__visual-overlay"></div>
+                     <div class="split__visual-chip" data-i18n="split2.chip">
+                        📦 Дбайливо перевозимо ваші речі — від коробок до піаніно.
+                     </div>
+                  </div>
+
+                  <div class="split__text-card reveal reveal--right">
+                     <div class="split__label" data-i18n="split2.label">Переїзди та перевезення речей</div>
+                     <h3 class="split__title" data-i18n="split2.title">
+                        Легкий переїзд без стресу та зайвих кілометрів.
+                     </h3>
+                     <p class="split__body" data-i18n="split2.body">
+                        Допоможемо перевезти речі в межах міста або між містами: меблі, техніку, коробки,
+                        особисті речі, архіви, інвентар. За потреби можемо приїхати двома людьми для завантаження /
+                        розвантаження.
+                     </p>
+                     <div class="split__tags">
+                        <span class="tag" data-i18n="split2.tag1">Квартири, студії, будинки</span>
+                        <span class="tag" data-i18n="split2.tag2">Міжміські перевезення</span>
+                        <span class="tag" data-i18n="split2.tag3">Допомога з упаковкою</span>
+                     </div>
+                     <div class="split__meta" data-i18n="split2.meta">
+                        Поясніть, звідки і куди їдемо, що саме перевозимо — ми підберемо оптимальний
+                        автомобіль і час виїзду.
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </section>
+
+         <!-- ================= CONTACT / CTA ================= -->
+         <section class="section" id="contact">
+            <div class="container">
+               <div class="section__header reveal">
+                  <div class="section__eyebrow" data-i18n="contact.eyebrow">Заявка</div>
+                  <h2 class="section__title" data-i18n="contact.title">
+                     Надішліть короткий запит — ми перетелефонуємо
+                  </h2>
+                  <p class="section__subtitle" data-i18n="contact.subtitle">
+                     Заповніть форму або напишіть нам напряму в WhatsApp. Чим точніше опишете обʼєм, тим швидше ми
+                     зможемо дати фінальну ціну.
+                  </p>
+               </div>
+
+               <div class="contact-card reveal">
+                  <div>
+                     <h3 class="contact-card__title" data-i18n="contact.cardTitle">
+                        Розкажіть коротко про ваш запит
+                     </h3>
+                     <p class="contact-card__text" data-i18n="contact.cardText">
+                        Мінімум формальностей — максимум конкретики. Ми не передаємо ваші дані третім особам.
+                     </p>
+                     <div class="contact-card__inline">
+                        <span data-i18n="contact.inlinePhone">
+                           📞 Телефон: <a href="tel:+33700000000">+33 7 00 00 00 00</a>
+                        </span>
+                        <span data-i18n="contact.inlineWhatsApp">
+                           🟢 WhatsApp: <a href="https://wa.me/33700000000" target="_blank" rel="noopener">написати</a>
+                        </span>
+                        <span data-i18n="contact.inlineEmail">
+                           ✉️ Email: <a href="mailto:contact@ecomove-trans.fr">contact@ecomove-trans.fr</a>
+                        </span>
+                     </div>
+                  </div>
+
+                  <!-- IMPORTANT: action to PHP -->
+                  <form class="contact-form" id="quoteForm" action="send_quote.php" method="post">
+                     <div class="field">
+                        <label for="name" data-i18n="form.nameLabel">Імʼя</label>
+                        <input id="name" type="text" name="name" required placeholder="Як до вас звертатись?">
+                     </div>
+                     <div class="field">
+                        <label for="phone" data-i18n="form.phoneLabel">Телефон або WhatsApp</label>
+                        <input id="phone" type="tel" name="phone" required placeholder="+33 ...">
+                     </div>
+                     <div class="field">
+                        <label for="service" data-i18n="form.serviceLabel">Тип запиту</label>
+                        <select id="service" name="service" required>
+                           <option value="" data-i18n="form.servicePlaceholder">Оберіть варіант</option>
+                           <option value="waste" data-i18n="form.serviceWaste">
+                              Вивіз будівельного сміття
+                           </option>
+                           <option value="move" data-i18n="form.serviceMove">
+                              Переїзд, перевезення речей
+                           </option>
+                           <option value="cargo" data-i18n="form.serviceCargo">
+                              Вантажне перевезення (матеріали, палети тощо)
+                           </option>
+                           <option value="other" data-i18n="form.serviceOther">
+                              Інше
+                           </option>
+                        </select>
+                     </div>
+                     <div class="field">
+                        <label for="message" data-i18n="form.messageLabel">Коротко опишіть задачу</label>
+                        <textarea id="message" name="message" rows="3"
+                           placeholder="Наприклад: 25 мішків сміття після ремонту, 3-й поверх без ліфта, район..."></textarea>
+                     </div>
+                     <button type="submit" class="btn-primary">
+                        <span class="btn-primary__dot"></span>
+                        <span data-i18n="form.submit">Відправити запит</span>
+                     </button>
+                     <div class="contact-form__hint" id="formHint" data-i18n="form.hint">
+                        Після відправки форми ми отримаємо вашу заявку на email і звʼяжемось з вами якнайшвидше.
+                     </div>
+                  </form>
+               </div>
+            </div>
+         </section>
+      </main>
+
+      <!-- ================= FOOTER ================= -->
+      <footer class="footer">
+         <div class="container footer__inner">
+            <div>
+               <span data-i18n="footer.copy">© <span id="year"></span> EcoMove Trans. Всі права захищені.</span>
+            </div>
+            <div class="footer__links">
+               <a href="#services" data-scroll-to="#services" data-i18n="footer.linkServices">Послуги</a>
+               <a href="#contact" data-scroll-to="#contact" data-i18n="footer.linkContact">Контакти</a>
+               <a href="#top" data-i18n="footer.linkPrivacy">Політика конфіденційності</a>
+            </div>
+         </div>
+      </footer>
+   </div>
+
+   <script>
+      // ====== Translations (UA / FR) ======
+      const translations = {
+         uk: {
+            "header.tagline": "Будівельне сміття · Переїзди · Франція",
+            "header.phoneLabel": "+33 7 00 00 00 00",
+            "header.hours": "Щоденно 08:00–20:00",
+            "header.whatsapp": "WhatsApp",
+            "header.whatsappNote": "Швидка відповідь",
+            "header.cta": "Замовити вивіз",
+
+            "hero.badge": "Вивіз будівельного сміття · Île-de-France",
+            "hero.title": "Чистий обʼєкт <span>без головного болю</span> — заберемо сміття та речі в зручний час.",
+            "hero.subtitle": "Ми вивозимо будівельне сміття, старі меблі, техніку та особисті речі після ремонту, переїзду або розчищення. Працюємо акуратно, швидко та легально на території Франції.",
+            "hero.pill1": "Будівельне сміття",
+            "hero.pill2": "Переїзди квартир і будинків",
+            "hero.pill3": "Вантажні перевезення до 3.5 т",
+            "hero.meta1": "Виїзд від 2 годин після дзвінка",
+            "hero.meta2": "Фіксована ціна до початку робіт",
+            "hero.cta": "Отримати прорахунок",
+            "hero.note": "<strong>Фото в WhatsApp</strong> — надішліть 2–3 фото сміття або речей, і ми прорахуємо вартість за 5–10 хв.",
+            "hero.trust": "Працюємо з приватними клієнтами, будівельними бригадами та агенціями нерухомості.",
+            "hero.badgeFloating": "Повний цикл: завантаження, вивіз, утилізація",
+            "hero.glassTitle": "Сьогодні: 5 доступних слотів",
+            "hero.glassText": "Можливий терміновий виїзд у той самий день в межах Парижу та передмість.",
+
+            "services.eyebrow": "Послуги",
+            "services.title": "Що саме ми перевозимо",
+            "services.subtitle": "Гнучко підлаштовуємось під ваш запит — від невеликого ремонту до повного очищення обʼєкта або переїзду в інше місто.",
+            "services.card1.title": "Будівельне сміття",
+            "services.card1.text": "Мішки з будматеріалами, плитка, гіпсокартон, двері, рами, сантехніка, залишки демонтажу. Акуратне виносення з поверху та завантаження в авто.",
+            "services.card1.meta": "Підʼїзд, приватний будинок, склад, обʼєкт після ремонту.",
+            "services.card2.title": "Переїзд речей",
+            "services.card2.text": "Квартири, будинки, кімнати, комори та гаражі. Допомагаємо упакувати, спускаємо по сходах, надійно фіксуємо в кузові.",
+            "services.card2.meta": "Можливі нічні переїзди за попередньою домовленістю.",
+            "services.card3.title": "Вантажні перевезення",
+            "services.card3.text": "Доставка матеріалів, меблів, техніки та палет. До 3.5 тонни. Міські та міжміські рейси по Франції.",
+            "services.card3.meta": "Працюємо з приватними клієнтами та компаніями.",
+            "services.hint": "Не знайшли свій випадок? Напишіть нам у WhatsApp — підкажемо, як краще організувати перевезення.",
+
+            "split1.label": "Будівельне сміття",
+            "split1.title": "Після ремонту залишився хаос? Ми приберемо за будівельниками.",
+            "split1.body": "Більше не потрібно думати, куди подіти мішки з будматеріалами, стару плитку чи сантехніку. Ми приїдемо з командою, винесемо все зі сходів або ліфта, акуратно завантажимо та вивеземо на легальні пункти утилізації.",
+            "split1.tag1": "Париж та передмістя",
+            "split1.tag2": "Обʼєкти після ремонту",
+            "split1.tag3": "Фото-прорахунок у месенджері",
+            "split1.meta": "Орієнтовна ціна розраховується по фото та приблизному обʼєму в м³ ще до виїзду на обʼєкт.",
+            "split1.chip": "🧱 3–4 години — і обʼєкт готовий до прибирання та фінальної здачі.",
+
+            "split2.label": "Переїзди та перевезення речей",
+            "split2.title": "Легкий переїзд без стресу та зайвих кілометрів.",
+            "split2.body": "Допоможемо перевезти речі в межах міста або між містами: меблі, техніку, коробки, особисті речі, архіви, інвентар. За потреби можемо приїхати двома людьми для завантаження / розвантаження.",
+            "split2.tag1": "Квартири, студії, будинки",
+            "split2.tag2": "Міжміські перевезення",
+            "split2.tag3": "Допомога з упаковкою",
+            "split2.meta": "Поясніть, звідки і куди їдемо, що саме перевозимо — ми підберемо оптимальний автомобіль і час виїзду.",
+            "split2.chip": "📦 Дбайливо перевозимо ваші речі — від коробок до піаніно.",
+
+            "contact.eyebrow": "Заявка",
+            "contact.title": "Надішліть короткий запит — ми перетелефонуємо",
+            "contact.subtitle": "Заповніть форму або напишіть нам напряму в WhatsApp. Чим точніше опишете обʼєм, тим швидше ми зможемо дати фінальну ціну.",
+            "contact.cardTitle": "Розкажіть коротко про ваш запит",
+            "contact.cardText": "Мінімум формальностей — максимум конкретики. Ми не передаємо ваші дані третім особам.",
+            "contact.inlinePhone": "📞 Телефон: <a href=\"tel:+33700000000\">+33 7 00 00 00 00</a>",
+            "contact.inlineWhatsApp": "🟢 WhatsApp: <a href=\"https://wa.me/33700000000\" target=\"_blank\" rel=\"noopener\">написати</a>",
+            "contact.inlineEmail": "✉️ Email: <a href=\"mailto:contact@ecomove-trans.fr\">contact@ecomove-trans.fr</a>",
+
+            "form.nameLabel": "Імʼя",
+            "form.phoneLabel": "Телефон або WhatsApp",
+            "form.serviceLabel": "Тип запиту",
+            "form.servicePlaceholder": "Оберіть варіант",
+            "form.serviceWaste": "Вивіз будівельного сміття",
+            "form.serviceMove": "Переїзд, перевезення речей",
+            "form.serviceCargo": "Вантажне перевезення (матеріали, палети тощо)",
+            "form.serviceOther": "Інше",
+            "form.messageLabel": "Коротко опишіть задачу",
+            "form.submit": "Відправити запит",
+            "form.hint": "Після відправки форми ми отримаємо вашу заявку на email і звʼяжемось з вами якнайшвидше.",
+
+            "footer.copy": "© <span id=\"year\"></span> EcoMove Trans. Всі права захищені.",
+            "footer.linkServices": "Послуги",
+            "footer.linkContact": "Контакти",
+            "footer.linkPrivacy": "Політика конфіденційності"
+         },
+
+         fr: {
+            "header.tagline": "Débarras de gravats · Déménagements · France",
+            "header.phoneLabel": "+33 7 00 00 00 00",
+            "header.hours": "Tous les jours 08h00–20h00",
+            "header.whatsapp": "WhatsApp",
+            "header.whatsappNote": "Réponse rapide",
+            "header.cta": "Demander un devis",
+
+            "hero.badge": "Enlèvement de gravats · Île-de-France",
+            "hero.title": "Un chantier propre <span>sans prise de tête</span> — nous emportons gravats et affaires à l’heure qui vous convient.",
+            "hero.subtitle": "Nous évacuons gravats, vieux meubles, électroménager et effets personnels après travaux, déménagement ou débarras. Intervention soignée, rapide et 100 % légale en France.",
+            "hero.pill1": "Gravats de chantier",
+            "hero.pill2": "Déménagements appartements & maisons",
+            "hero.pill3": "Transport jusqu’à 3,5 t",
+            "hero.meta1": "Intervention dès 2 h après votre appel",
+            "hero.meta2": "Tarif fixé avant le début des travaux",
+            "hero.cta": "Obtenir un devis",
+            "hero.note": "<strong>Photos sur WhatsApp</strong> — envoyez 2–3 photos, nous estimons le prix en 5–10 minutes.",
+            "hero.trust": "Nous travaillons avec des particuliers, des équipes de chantier et des agences immobilières.",
+            "hero.badgeFloating": "Cycle complet : chargement, transport, valorisation",
+            "hero.glassTitle": "Aujourd’hui : 5 créneaux disponibles",
+            "hero.glassText": "Intervention possible dans la journée à Paris et en proche banlieue.",
+
+            "services.eyebrow": "Services",
+            "services.title": "Ce que nous transportons",
+            "services.subtitle": "Nous adaptons notre service à votre besoin — du petit chantier au débarras complet ou au déménagement vers une autre ville.",
+            "services.card1.title": "Gravats de chantier",
+            "services.card1.text": "Sacs de gravats, carrelage, plaques de plâtre, portes, cadres, sanitaire, déchets de démolition. Sortie par escaliers ou ascenseur, chargement soigné.",
+            "services.card1.meta": "Immeubles, maisons individuelles, entrepôts, chantiers après travaux.",
+            "services.card2.title": "Déménagement d’affaires",
+            "services.card2.text": "Appartements, maisons, chambres, caves et garages. Aide à l’emballage, portage dans les escaliers, arrimage sécurisé dans le camion.",
+            "services.card2.meta": "Déménagements de nuit possibles sur demande.",
+            "services.card3.title": "Transport de marchandises",
+            "services.card3.text": "Livraison de matériaux, meubles, électroménager et palettes. Jusqu’à 3,5 tonnes. Courses locales et longue distance en France.",
+            "services.card3.meta": "Particuliers et entreprises.",
+
+            "services.hint": "Vous ne trouvez pas votre cas ? Écrivez-nous sur WhatsApp — nous vous proposerons la meilleure solution.",
+
+            "split1.label": "Gravats de chantier",
+            "split1.title": "Après les travaux, il reste un chaos ? Nous nous chargeons du débarras.",
+            "split1.body": "Plus besoin de chercher où déposer sacs de gravats, vieux carrelage ou sanitaires. Nous venons avec une équipe, descendons tout par escaliers ou ascenseur, chargeons proprement et emportons vers des centres de traitement agréés.",
+            "split1.tag1": "Paris & proche banlieue",
+            "split1.tag2": "Chantiers après travaux",
+            "split1.tag3": "Devis sur photos par messagerie",
+            "split1.meta": "Le prix indicatif est calculé d’après les photos et le volume estimé en m³ avant notre venue sur place.",
+            "split1.chip": "🧱 En 3–4 heures, le chantier est prêt pour le nettoyage final et la livraison.",
+
+            "split2.label": "Déménagements & transport d’effets",
+            "split2.title": "Un déménagement fluide, sans stress ni kilomètres en trop.",
+            "split2.body": "Nous transportons vos affaires en ville ou entre deux villes : meubles, électroménager, cartons, archives, matériel. Possibilité de venir à deux pour le chargement / déchargement.",
+            "split2.tag1": "Studios, appartements, maisons",
+            "split2.tag2": "Courses longue distance",
+            "split2.tag3": "Aide à l’emballage",
+            "split2.meta": "Expliquez-nous d’où à où vous partez, ce que vous transportez — nous choisissons le véhicule adapté et le bon créneau.",
+            "split2.chip": "📦 Nous manipulons vos affaires avec soin — des cartons jusqu’au piano.",
+
+            "contact.eyebrow": "Demande",
+            "contact.title": "Envoyez une brève demande — nous vous rappelons",
+            "contact.subtitle": "Remplissez le formulaire ou contactez-nous directement sur WhatsApp. Plus votre description est précise, plus vite nous pourrons confirmer le prix.",
+            "contact.cardTitle": "Décrivez brièvement votre besoin",
+            "contact.cardText": "Le minimum de formalités — le maximum de concret. Vos données ne sont pas transmises à des tiers.",
+            "contact.inlinePhone": "📞 Téléphone : <a href=\"tel:+33700000000\">+33 7 00 00 00 00</a>",
+            "contact.inlineWhatsApp": "🟢 WhatsApp : <a href=\"https://wa.me/33700000000\" target=\"_blank\" rel=\"noopener\">nous écrire</a>",
+            "contact.inlineEmail": "✉️ Email : <a href=\"mailto:contact@ecomove-trans.fr\">contact@ecomove-trans.fr</a>",
+
+            "form.nameLabel": "Nom",
+            "form.phoneLabel": "Téléphone ou WhatsApp",
+            "form.serviceLabel": "Type de demande",
+            "form.servicePlaceholder": "Choisissez une option",
+            "form.serviceWaste": "Enlèvement de gravats",
+            "form.serviceMove": "Déménagement, transport d’affaires",
+            "form.serviceCargo": "Transport de marchandises (matériaux, palettes, etc.)",
+            "form.serviceOther": "Autre",
+            "form.messageLabel": "Décrivez brièvement votre demande",
+            "form.submit": "Envoyer la demande",
+            "form.hint": "Après l’envoi du formulaire, nous recevrons votre demande par email et vous recontacterons au plus vite.",
+
+            "footer.copy": "© <span id=\"year\"></span> EcoMove Trans. Tous droits réservés.",
+            "footer.linkServices": "Services",
+            "footer.linkContact": "Contact",
+            "footer.linkPrivacy": "Politique de confidentialité"
+         }
+      };
+
+      function applyTranslations(lang) {
+         const dict = translations[lang] || translations.uk;
+         document.documentElement.setAttribute("lang", lang === "fr" ? "fr" : "uk");
+         document.documentElement.dataset.lang = lang;
+
+         document.querySelectorAll("[data-i18n]").forEach(function (el) {
+            const key = el.getAttribute("data-i18n");
+            if (dict[key]) {
+               el.innerHTML = dict[key];
+            }
+         });
+
+         document.querySelectorAll("[data-lang-switch]").forEach(function (btn) {
+            btn.classList.toggle("is-active", btn.getAttribute("data-lang-switch") === lang);
+         });
+
+         localStorage.setItem("siteLang", lang);
+      }
+
+      // ====== Smooth scroll ======
+      document.querySelectorAll("[data-scroll-to]").forEach(function (el) {
+         el.addEventListener("click", function () {
+            var targetSelector = el.getAttribute("data-scroll-to");
+            var target = document.querySelector(targetSelector);
+
+            if (!target) return;
+
+            var top = target.getBoundingClientRect().top + window.scrollY - 90;
+            window.scrollTo({
+               top: top,
+               behavior: "smooth"
+            });
+         });
+      });
+
+      // ====== Reveal on scroll ======
+      (function () {
+         var revealEls = document.querySelectorAll(".reveal");
+         if ("IntersectionObserver" in window) {
+            var observer = new IntersectionObserver(function (entries) {
+               entries.forEach(function (entry) {
+                  if (entry.isIntersecting) {
+                     entry.target.classList.add("is-visible");
+                     observer.unobserve(entry.target);
+                  }
+               });
+            }, {
+               threshold: 0.14
+            });
+
+            revealEls.forEach(function (el) {
+               observer.observe(el);
+            });
+         } else {
+            revealEls.forEach(function (el) {
+               el.classList.add("is-visible");
+            });
+         }
+      })();
+
+      // ====== Language switcher & initial load ======
+      document.addEventListener("DOMContentLoaded", function () {
+         const savedLang = localStorage.getItem("siteLang") || "uk";
+         applyTranslations(savedLang);
+
+         document.querySelectorAll("[data-lang-switch]").forEach(function (btn) {
+            btn.addEventListener("click", function () {
+               const lang = btn.getAttribute("data-lang-switch");
+               applyTranslations(lang);
+            });
+         });
+
+         document.getElementById("year").textContent = new Date().getFullYear();
+      });
+   </script>
+</body>
+
+</html>
